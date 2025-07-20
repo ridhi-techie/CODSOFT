@@ -1,16 +1,16 @@
-
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Fonts & Base */
 body {
   font-family: 'Segoe UI', sans-serif;
   color: #333;
   background-color: #f8f9fa;
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -29,6 +29,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 1000;
+  animation: slideInTop 0.8s ease forwards;
 }
 
 .navbar .logo {
@@ -42,17 +43,27 @@ a {
   list-style: none;
 }
 
+.navbar .nav-links a {
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #facc15;
+}
+
 .navbar .btn {
   background-color: white;
   color: #1e3a8a;
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
 .navbar .btn:hover {
-  background-color: #e0e0e0;
+  background-color: #facc15;
+  color: #1e3a8a;
+  transform: scale(1.05);
 }
 
 /* Hero */
@@ -60,7 +71,16 @@ a {
   background: linear-gradient(to right, #1e3a8a, #2563eb);
   color: white;
   text-align: center;
-  padding: 100px 20px;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-content {
+  max-width: 700px;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .hero h1 {
@@ -85,6 +105,23 @@ a {
 
 .btn-primary:hover {
   background-color: #eab308;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Landing Image */
+.hero-image img {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: zoomIn 1s ease;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
 }
 
 /* Features */
@@ -97,6 +134,7 @@ a {
 .features h2 {
   font-size: 2rem;
   margin-bottom: 40px;
+  animation: fadeInUp 1s ease;
 }
 
 .feature-grid {
@@ -112,6 +150,12 @@ a {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
 /* About */
@@ -119,6 +163,7 @@ a {
   padding: 60px 10%;
   background-color: #f1f5f9;
   text-align: center;
+  animation: fadeIn 1s ease;
 }
 
 .about h2 {
@@ -132,6 +177,7 @@ a {
   background-color: #1e3a8a;
   color: white;
   text-align: center;
+  animation: fadeInUp 1s ease;
 }
 
 .cta h2 {
@@ -145,4 +191,55 @@ a {
   background-color: #0f172a;
   color: white;
   text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInTop {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero {
+    padding: 50px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+  }
+
+  .feature-grid {
+    flex-direction: column;
+  }
 }
